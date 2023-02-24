@@ -94,7 +94,7 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
     fs::file_delete(archivo)
     fs::file_delete(csv)
   }
-  
+  names(d)[1] <- anio
   return(d)
 
 }
@@ -113,7 +113,7 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
 summary_budget <- function (data = budgetuy::presupuesto_2021, level = "org") {
   
   data_sum <- data %>%  
-    dplyr::group_by(organismo_nombre, año) %>% 
+    dplyr::group_by(organismo_nombre, anio) %>% 
     dplyr::summarise_at(dplyr::vars(apertura, credito, ejecutado), sum, na.rm = FALSE) %>% 
     dplyr::mutate("% ejecutado" = budgetuy::round_off(ejecutado/credito*100, 1))
 }

@@ -16,7 +16,7 @@ trabajás con los datos del presupuesto.
 ## Instalación
 
 Podés descargar la versión en desarrollo de budgetuy desde
-[GitHub](https://github.com/) con:
+[GitHub](https://github.com/R-Lab-Uy/budgetuy) con:
 
 ``` r
 # install.packages("devtools")
@@ -69,9 +69,9 @@ you push. An example workflow can be found here:
 
 ## ¿Quiénes somos?
 
-RLabUy somos Richard Detomasi y Gabriela Mathieu. Junto con budgetuy
-hemos desarrollado otros paquetes en R que se complementan y conforman
-uy-verse.
+[RLabUy](https://rlabuy.rbind.io/) somos Richard Detomasi y Gabriela
+Mathieu. Junto con budgetuy hemos desarrollado otros paquetes en R que
+se complementan y conforman **uyverse**.
 
 En budgetuy colaboró Guzmán López con funciones para descargar y
 estandarizar las cotizaciones de monedas desde la web del INE.
@@ -87,5 +87,5 @@ de R en Uruguay. La parte más difícil es mantener estos paquetes
 actualizados porque lleva tiempo. Pero todo el esfuerzo vale la pena si
 más personas usan el paquete. Podés colaborar usándolo y detectando
 errores o posibles mejoras. Podés hacernos llegar tus comentarios por
-mail o enviando issues. Si conocés a alguien que podría serle útil este
-paquete comentáselo.
+[mail](mailto:rlabuy@protonmail.com) o enviando issues. Si conocés a
+alguien que podría serle útil este paquete comentáselo.
