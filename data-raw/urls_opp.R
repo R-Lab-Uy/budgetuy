@@ -1,7 +1,8 @@
 ## list urls from OPP website
 
 urls_opp <- data.frame(yy = 2011:2022,
-                       cpd_csv = fs::path("https://transparenciapresupuestaria.opp.gub.uy/sites/default/files/datos-abiertos/",
+                       nivel = rep("national", 12),
+                       link = fs::path("https://transparenciapresupuestaria.opp.gub.uy/sites/default/files/datos-abiertos/",
                                          c("credito_presupuestal_detalle_2011.csv", #2011
                                            "credito_presupuestal_detalle_2012.csv",
                                            "credito_presupuestal_detalle_2013.csv",

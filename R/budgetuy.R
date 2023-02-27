@@ -8,7 +8,7 @@ NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
-                                                       "año", "anio",
+                                                       "anio",
                                                        "apertura",
                                                        "credito",
                                                        "d",
@@ -17,6 +17,7 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "fecha",
                                                        "m",
                                                        "mes",
+                                                       "nivel",
                                                        "organismo_nombre",
                                                        "y"
                                                        ))

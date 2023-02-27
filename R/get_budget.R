@@ -1,6 +1,7 @@
 #' get_budget
 #'
 #' @param year anio del credito presupuestal 
+#' @param level a nivel nacional ('national') o subnacional ('subnational')
 #' @param folder carpeta donde descargar el archivo
 #' @param toR convertir a formato RData
 #'
@@ -11,7 +12,7 @@
 #' \donttest{
 #' get_budget(year = 2021, toR = FALSE)
 #' }
-get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
+get_budget <- function(year = 2021, level = "national", folder = tempdir(), toR = TRUE){
   
   # checks ----
   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
@@ -33,11 +34,14 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
     year <- max(all_years)
   }
   
-  urls <- budgetuy::urls_opp %>% dplyr::mutate(file = paste0(folder, "/credito_presupuestal_", all_years, ".csv"))
+  urls <- budgetuy::urls_opp %>%
+    dplyr::filter(nivel == {{level}}) %>% 
+    dplyr::mutate(file = paste0(folder, "/credito_presupuestal_", all_years, ".csv"))
+  
   links <- urls %>% dplyr::filter(.data$yy %in% year)
 
 
-  u1 <- links$cpd_csv
+  u1 <- links$link
   f1 <- links$file
   y <- links$yy
   
@@ -52,7 +56,7 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
   archivo <- fs::dir_ls(folder, regexp = "\\.csv$")
   archivo <- archivo[which.max(file.info(archivo)$mtime)]
   ext <- fs::path_ext(archivo)
-  uncompressed_formats <- "csv"
+  uncompressed_formats <- c("csv", "xlsx")
   
   if (ext %in% c(uncompressed_formats) != TRUE) {
     formats_string <- paste(c(uncompressed_formats[length(uncompressed_formats) - 1]),
@@ -62,10 +66,17 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
     stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
   }
   
-  if (ext %in% uncompressed_formats) {
+  if (ext %in% "csv") {
     message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
     #d <- readr::read_csv(archivo, show_col_types = FALSE)
     d <- utils::read.csv(archivo)
+    d <- d %>%
+      dplyr::mutate_if(is.character,stringi::stri_trans_general,"latin-ascii")
+  }
+  if (ext %in% "xlsx") {
+    message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
+    #d <- readr::read_csv(archivo, show_col_types = FALSE)
+    d <- readxl::read_xlsx(archivo)
     
   }
   
@@ -80,11 +91,14 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
   names(d) <- tolower(names(d))
   
   # fix class variables
-  d <- d %>% 
-    dplyr::mutate(apertura = gsub(",", ".", apertura),
-                  credito = gsub(",", ".", credito),
-                  ejecutado = gsub(",", ".", ejecutado)) %>% 
-     dplyr::mutate_at(dplyr::vars(apertura, credito, ejecutado), as.numeric)
+  if(level =="national"){
+    d <- d %>% 
+      dplyr::mutate(apertura = gsub(",", ".", apertura),
+                    credito = gsub(",", ".", credito),
+                    ejecutado = gsub(",", ".", ejecutado)) %>% 
+      dplyr::mutate_at(dplyr::vars(apertura, credito, ejecutado), as.numeric)  
+  }
+  
   
   # save ----
   if (isTRUE(toR)) {
@@ -94,7 +108,7 @@ get_budget <- function(year = 2021, folder = tempdir(), toR = TRUE){
     fs::file_delete(archivo)
     fs::file_delete(csv)
   }
-  names(d)[1] <- anio
+  names(d)[1] <- "anio"
   return(d)
 
 }

@@ -8,7 +8,7 @@
 #' @param ebrou si es TRUE utiliza la cotizacion eBROU
 #' @param base_date fecha de la cotizacion a utilizar
 #'
-#' @return
+#' @return data.frame
 #' @export
 #'
 #' @examples

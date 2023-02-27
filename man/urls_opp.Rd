@@ -8,7 +8,8 @@
 A data frame with 12 rows and 3 variables:
 \describe{
 \item{yy}{date from 2011 to 2022}
-\item{cpd_csv}{url for data download}
+\item{nivel}{level of the budget}
+\item{link}{url for data download}
 \item{dic}{url for metadata download}
 }
 }

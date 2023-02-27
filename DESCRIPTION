@@ -40,6 +40,7 @@ Imports:
     rlang,
     rvest,
     stringr,
+    stringi,
     tidyr,
     tsibble,
     xml2

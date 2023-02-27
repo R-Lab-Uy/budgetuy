@@ -4,10 +4,12 @@
 \alias{get_budget}
 \title{get_budget}
 \usage{
-get_budget(year = 2021, folder = tempdir(), toR = TRUE)
+get_budget(year = 2021, level = "national", folder = tempdir(), toR = TRUE)
 }
 \arguments{
 \item{year}{anio del credito presupuestal}
+
+\item{level}{a nivel nacional ('national') o subnacional ('subnational')}
 
 \item{folder}{carpeta donde descargar el archivo}
 

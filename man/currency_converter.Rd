@@ -29,6 +29,9 @@ currency_converter(
 
 \item{base_date}{fecha de la cotizacion a utilizar}
 }
+\value{
+data.frame
+}
 \description{
 currency_converter
 }

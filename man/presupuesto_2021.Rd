@@ -7,7 +7,7 @@
 \format{
 A data frame with more than 38000 rows and 29 variables:
 \describe{
-\item{año}{}
+\item{anio}{}
 \item{organismo_nombre}{}
 \item{ue_nombre}{}
 \item{grupo_ues_nombre}{}
