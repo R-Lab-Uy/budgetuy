@@ -8,8 +8,8 @@
 
 El objetivo de este paquete es facilitar el trabajo con el presupuesto
 de Uruguay. Permite descargar datos abiertos de presupuesto de los
-organismos del Estado desde … hasta el último dato disponible.
-Encontrarás funciones para convertir de valores corrientes a constantes
+organismos del Estado desde … hasta el último dato disponible. También
+encontrarás funciones para convertir de valores corrientes a constantes
 y convertir entre monedas. Esto último puede serte útil incluso si no
 trabajás con los datos del presupuesto.
 
@@ -27,11 +27,30 @@ devtools::install_github("R-Lab-Uy/budgetuy")
 
 **Divisas**
 
+| codigo | moneda               |
+|:-------|:---------------------|
+| ARS    | Peso Argentino       |
+| BRL    | Real Brasilero       |
+| EUR    | Euro                 |
+| USD    | Dólar Estadounidense |
+| UYU    | Peso Uruguayo        |
+
 **Cotizaciones**
+
+El paquete permite acceder a las cotizaciones diarias de dichas divisas
+mencionadas desde 1999 a la fecha. En el caso del dólar estadounidense,
+además del valor de compra y venta, desde 2017 se cuenta con los valores
+de compra y venta de eBROU.
 
 **IPC**
 
+Este paquete trabaja con los datos de IPC con base 2010 publicados por
+el INE.
+
 **Presupuesto**
+
+Los datos de presupuesto del paquete provienen de las publicaciones de
+OPP.
 
 ## ¿Cómo usar budgetuy?
 
@@ -63,9 +82,7 @@ p21_org_const <- format_values(data = p21_org_const, x = ejecutado, to = "thousa
 p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_const, base_date = "2019-01-01")
 ```
 
-You could also use GitHub Actions to re-render `README.Rmd` every time
-you push. An example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+<!-- You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>. -->
 
 ## ¿Quiénes somos?
 
