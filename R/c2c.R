@@ -61,13 +61,14 @@ c2c <- function(to = "constant",
    indice <- df %>%
        dplyr::slice(rows1) %>%
        dplyr::select(fecha, indice) %>% 
-       dplyr::mutate(indice = as.numeric(indice))
+       dplyr::mutate(indice = as.numeric(indice))#ya guardarlo numeric en el data
      
     data <- dplyr::left_join(data, indice, by = "fecha")
 
     data <- data %>%
       dplyr::mutate(deflactor = indice_base/indice) %>% 
-      dplyr::mutate(x_const = .data[[x]]*deflactor)
+      dplyr::mutate(x_const = as.numeric(.data[[x]])*deflactor) %>% 
+      dplyr::select(-mes, -fecha, - deflactor, -indice)
   }
   if(to == "current"){
     

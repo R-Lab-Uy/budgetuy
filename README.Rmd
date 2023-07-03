@@ -36,7 +36,7 @@ devtools::install_github("R-Lab-Uy/budgetuy")
 
 ```{r echo = FALSE, eval =FALSE}
 library(budgetuy)
-divisas <- budgetuy::divisas
+data(divisas)
 
 knitr::kable(divisas)
 ```

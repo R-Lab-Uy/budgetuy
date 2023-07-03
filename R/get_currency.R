@@ -10,25 +10,26 @@
 #' }
 get_currency_exchange_data <- function() {
   
-  message("Descargando data del INE...")
-  # Download data from INE and write to a file
-  httr::set_config(httr::config(ssl_verifypeer = 0L))
+  # message("Descargando data del INE...")
+  # # Download data from INE and write to a file
+  # httr::set_config(httr::config(ssl_verifypeer = 0L))
+  # 
+  # url <-
+  #   xml2::read_html(httr::GET("https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/estadisticas/cotizacion-monedas")) %>%
+  #   rvest::html_node(".pull-right > a:nth-child(1)") %>%
+  #   rvest::html_attr("href") %>% 
+  #   gsub("http:", "https:", .)
+  # 
+  # res <- 
+  #   httr::GET(url = url, httr::timeout(60))
+  # 
+  # file <- here::here(tempdir(), "cotizaciones.xlsx")
+  # zz <- file(file, "wb")
+  # writeBin(res$content, zz)
+  # close(zz)
   
-  url <-
-    xml2::read_html(httr::GET("https://www.ine.gub.uy/web/guest/cotizacion-de-monedas")) %>%
-    rvest::html_node(".pull-right > a:nth-child(1)") %>%
-    rvest::html_attr("href") %>% 
-    gsub("http:", "https:", .)
-  
-  res <- 
-    httr::GET(url = url, httr::timeout(60))
-  
-  file <- here::here(tempdir(), "cotizaciones.xlsx")
-  zz <- file(file, "wb")
-  writeBin(res$content, zz)
-  close(zz)
-  
-  return(file)
+  #file <- "https://www5.ine.gub.uy/documents/Estad%C3%ADsticasecon%C3%B3micas/SERIES%20Y%20OTROS/Cotizaci%C3%B3n%20de%20monedas/Cotizaci%C3%B3n%20monedas.xlsx"
+  #return(file)
 
 }
 

@@ -34,7 +34,7 @@ currency_converter <- function(data = NULL,
   }
     
   data <- data %>% 
-    dplyr::mutate(x_usd = .data[[x]]*df[1])
+    dplyr::mutate(x_usd = .data[[x]]/df[1])
   
   return(data)
 }

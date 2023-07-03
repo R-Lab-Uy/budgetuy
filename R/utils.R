@@ -15,26 +15,26 @@ get_ipc <- function(folder = tempdir()){
   assertthat::assert_that(is.character(folder), msg = "Sorry... :( \n \t folder parameter must be character")
   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   
-  u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
-  f <- fs::path(folder, "IPC gral var M_B10.xls")
-  if (identical(.Platform$OS.type, "unix")) {
-    try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
-  } else {
-    try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
-  }
-  suppressMessages({
-    df <- readxl::read_xls(f)
-    df <- df %>%
-      dplyr::slice(7, 10:length(df[[1]])-3)
-    names(df) <- df[1,]
-    df <- df[-c(1:4),]
-    df <- janitor::clean_names(df) %>%
-      dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
-      dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
-    ipc_base2010 <- df
-  })
-  
-  return(ipc_base2010)
+  # u <- "https://www.ine.gub.uy/c/document_library/get_file?uuid=2e92084a-94ec-4fec-b5ca-42b40d5d2826&groupId=10181"
+  # f <- fs::path(folder, "IPC gral var M_B10.xls")
+  # if (identical(.Platform$OS.type, "unix")) {
+  #   try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+  # } else {
+  #   try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+  # }
+  # suppressMessages({
+  #   df <- readxl::read_xls(f)
+  #   df <- df %>%
+  #     dplyr::slice(7, 10:length(df[[1]])-3)
+  #   names(df) <- df[1,]
+  #   df <- df[-c(1:4),]
+  #   df <- janitor::clean_names(df) %>%
+  #     dplyr::mutate(fecha = janitor::excel_numeric_to_date(as.numeric(as.character(.data$mes_y_ano)), date_system = "modern")) %>%
+  #     dplyr::select(.data$fecha, dplyr::everything(), -.data$mes_y_ano)
+  #   ipc_base2010 <- df
+  # })
+  # 
+  # return(ipc_base2010)
 }
 
 

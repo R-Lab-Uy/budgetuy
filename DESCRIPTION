@@ -22,7 +22,7 @@ Description: Permite convertir de pesos corrientes a constantes y convertir valo
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Imports: 
     assertthat,
     curl,
@@ -30,7 +30,6 @@ Imports:
     fs,
     glue,
     here,
-    httr,
     janitor,
     lubridate,
     magrittr,
@@ -38,12 +37,10 @@ Imports:
     readr,
     readxl,
     rlang,
-    rvest,
     stringr,
     stringi,
     tidyr,
-    tsibble,
-    xml2
+    tsibble
 Suggests: 
     testthat (>= 3.0.0)
 Depends: 
