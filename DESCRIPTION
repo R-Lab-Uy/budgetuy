@@ -12,7 +12,7 @@ Authors@R:
              role = "aut",
              email = "richard.detomasi@gmail.com",
              comment = c(ORCID = "0000-0002-6725-0261")),
-      person(given = "Guzman",
+             person(given = "Guzman",
              family = "Lopez",
              role = "ctb",
              email = "guzman@tryolabs.com")
@@ -28,7 +28,6 @@ Imports:
     curl,
     dplyr,
     fs,
-    glue,
     here,
     janitor,
     lubridate,

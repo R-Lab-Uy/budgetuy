@@ -4,10 +4,10 @@
 \alias{get_ipc}
 \title{get_ipc}
 \usage{
-get_ipc(folder = tempdir())
+get_ipc(path = tempdir())
 }
 \arguments{
-\item{folder}{por defecto, una carpeta temporal donde se descarga una planilla}
+\item{path}{por defecto, una carpeta temporal donde se descarga una planilla}
 }
 \value{
 data.frame

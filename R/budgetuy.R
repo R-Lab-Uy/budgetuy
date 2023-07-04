@@ -19,5 +19,8 @@ if(getRversion() >= "2.15.1") utils::globalVariables(c(".",
                                                        "mes",
                                                        "nivel",
                                                        "organismo_nombre",
-                                                       "y"
+                                                       "y",
+                                                       "indice",
+                                                       "mes_y_ano",
+                                                       "prmedio"
                                                        ))

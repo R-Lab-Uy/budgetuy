@@ -52,6 +52,8 @@ Other dataset:
 \code{\link{cotizaciones}},
 \code{\link{divisas}},
 \code{\link{ipc_base2010}},
+\code{\link{ipc_base2022}},
+\code{\link{urls_ine}},
 \code{\link{urls_opp}}
 }
 \concept{dataset}

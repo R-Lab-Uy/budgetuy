@@ -24,7 +24,9 @@ A dataset containing the currency code and name
 Other dataset: 
 \code{\link{cotizaciones}},
 \code{\link{ipc_base2010}},
+\code{\link{ipc_base2022}},
 \code{\link{presupuesto_2021}},
+\code{\link{urls_ine}},
 \code{\link{urls_opp}}
 }
 \concept{dataset}

@@ -2,10 +2,11 @@
 
 export("%>%")
 export(c2c)
+export(checkdate)
 export(currency_converter)
 export(format_currency_data)
 export(get_budget)
-export(get_currency_exchange_data)
+export(get_currency_exchange)
 export(get_ipc)
 export(round_off)
 export(summary_budget)

@@ -17,6 +17,39 @@
 #' Aviso: El script no es un producto oficial de INE.
 "ipc_base2010"
 
+#' A dataset containing the IPC base 2022
+#' @family dataset
+#' @format A data frame with 1024 rows and 8 variables:
+#' \describe{
+#'   \item{fecha}{date from 1937 to now}
+#'   \item{indice}{IPC}
+#'   \item{mensual}{mensual value of IPC}
+#'   \item{trimestre}{three-month period value of IPC}
+#'   \item{cuatrimestre}{four-month period value of IPC}
+#'   \item{semestre}{six-month period value of IPC}
+#'   \item{acum_ano}{acumulated IPC}
+#'   \item{acum_12_meses}{acumulated IPC last 12 month}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+"ipc_base2022"
+
+#' A dataset containing the urls of INE datasets
+#' @family dataset
+#' @format A data frame with 12 rows and 3 variables:
+#' \describe{
+#'   \item{indice}{date from 2011 to 2022}
+#'   \item{url}{level of the budget}
+#'   \item{nota}{url for data download}
+#'  }
+#' @source \url{http://www.ine.gub.uy/}
+#' @details
+#' Disclaimer: This script is not an official INE product.
+#' Aviso: El script no es un producto oficial de INE.
+"urls_ine"
+
 
 #' A dataset containing the urls of OPP datasets and metadata
 #' @family dataset

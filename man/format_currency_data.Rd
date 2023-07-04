@@ -18,7 +18,7 @@ data.frame
 format_currency_data
 }
 \examples{
-#' 
+#'
 }
 \author{
 Guzman Lopez

@@ -37,7 +37,9 @@ Aviso: El script no es un producto oficial de INE.
 Other dataset: 
 \code{\link{divisas}},
 \code{\link{ipc_base2010}},
+\code{\link{ipc_base2022}},
 \code{\link{presupuesto_2021}},
+\code{\link{urls_ine}},
 \code{\link{urls_opp}}
 }
 \concept{dataset}

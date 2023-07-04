@@ -66,20 +66,20 @@ library(budgetuy)
 # descargo los datos desde la web de OPP 
 presupuesto_2021 <- get_budget(year = 2021, toR = FALSE)
 
-# leo los datos del paquete, es lo mismo
-p21 <- presupuesto_2021
+# alternativamente, leo los datos del paquete
+p21 <- budgetuy::presupuesto_2021
 
 # si no quiero tanto detalle, trabajo con un resumen de esa info, agrupada por organismo
 p21_org <- summary_budget(data = p21, level = "org")
 
 # si quiero comparar con el presupuesto de 2019, me conviene llevar los pesos corrientes de 2021 a pesos constantes de 2019
-p21_org_const <- c2c(to ="constant", base_month = "01", base_year = "2019", data = p21_org, x = "ejecutado", y = "año")
+p21_org_const <- c2c(end_date = "2019-01-01", data = p21_org, x = "ejecutado", start_date = "anio")
 
 # para expresar los valores en miles de pesos
 p21_org_const <- format_values(data = p21_org_const, x = ejecutado, to = "thousand") 
 
 # o podemos expresar los valores en dólares
-p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_const, base_date = "2019-01-01")
+p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_const, end_date = "2019-01-01")
 ```
 
 <!-- You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>. -->
@@ -90,8 +90,8 @@ p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_cons
 Mathieu. Junto con budgetuy hemos desarrollado otros paquetes en R que
 se complementan y conforman **uyverse**.
 
-En budgetuy colaboró Guzmán López con funciones para descargar y
-estandarizar las cotizaciones de monedas desde la web del INE.
+En budgetuy colaboró Guzmán López con funciones para estandarizar las
+cotizaciones de monedas descargadas desde la web del INE.
 
 Además de desarrollar paquetes de R, damos cursos de R para que más
 gente lo use y así crezca la comunidad de R. Si te interesa alguno de

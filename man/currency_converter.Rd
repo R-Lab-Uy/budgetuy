@@ -11,7 +11,7 @@ currency_converter(
   money_to = "USD",
   value = "buy",
   ebrou = FALSE,
-  base_date = Sys.Date() - 1
+  end_date = Sys.Date() - 1
 )
 }
 \arguments{
@@ -23,11 +23,11 @@ currency_converter(
 
 \item{money_to}{por defecto, dolares estadounidenses}
 
-\item{value}{'buy', 'sell', 'mean'}
+\item{value}{'buy' (compra), 'sell' (venta), 'mean' (promedio)}
 
 \item{ebrou}{si es TRUE utiliza la cotizacion eBROU}
 
-\item{base_date}{fecha de la cotizacion a utilizar}
+\item{end_date}{fecha de la cotizacion a utilizar}
 }
 \value{
 data.frame

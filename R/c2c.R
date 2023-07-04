@@ -1,16 +1,11 @@
-# montos <- readxl::read_xlsx("montos.xlsx")
-
 #' c2c
 #' @description convierte de pesos uruguayos corrientes a constantes
-#' @param to por defecto, 'constant' para convertir a pesos constantes
-#' @param base_month mes base
-#' @param base_year anio base
+#' @param end_date fecha final para la conversion "yyyy-mm-dd"
 #' @param index indice a utilizar para convertir (IPC, IPAB)
 #' @param level por defecto, general
 #' @param data data frame con los montos a convertir
-#' @param x variable de data con los montos
-#' @param y variable de data con el anio
-#' @param m variable de data con el mes
+#' @param x variable de data con los valores a convertir
+#' @param start_date variable de data con la fecha correspondiente a los valores "yyyy-mm-dd"
 #'
 #' @return data.frame
 #' @export
@@ -18,41 +13,28 @@
 #'
 #'@examples
 #'#'
-c2c <- function(to = "constant",
-                base_month = NULL,
-                base_year = NULL,
+c2c <- function(end_date = NA_character_,
                 index = "IPC",
                 level = "G", 
                 data = NULL,
                 x = NA_character_,
-                y = NA_character_,
-                m = NA_character_) {
+                start_date = NA_character_) {
+  
+  assertthat::assert_that(checkdate(end_date), msg = "Sorry... :( \n \t end_date parameter is not a validate date")
+  assertthat::assert_that(is.character(x), msg = "Sorry... :( \n \t x parameter must be character")
+  assertthat::assert_that(is.character(start_date), msg = "Sorry... :( \n \t start_date parameter must be character")
+  assertthat::assert_that(is.data.frame(data), msg = "Sorry... :( \n \t data parameter must be data frame")
   
   if(index == "IPC" & level == "G"){
-    df <- budgetuy::ipc_base2010
+    df <- budgetuy::ipc_base2022
   }
   
-  if(is.na(m)){
-    data$m <- "01"
-  }
-  
-  if(to == "constant") {
-    
-    if(is.na(m)){
-      data <- data %>% 
-        dplyr::mutate(
-          fecha = paste(.data[[y]], m, "01", sep = "-"),
-          fecha = as.Date(fecha, "%Y-%m-%d"))
-    } else{
-      data <- data %>% 
-        dplyr::mutate(
-          mes = ifelse(nchar(.data[[m]])==1, paste0("0", .data[[m]]), .data[[m]]),
-          fecha = paste(.data[[y]], mes, "01", sep = "-"),
-          fecha = as.Date(fecha, "%Y-%m-%d"))  
-    }
-    
+   data <- data %>% 
+      dplyr::mutate(
+          fecha = as.Date(start_date, "%Y-%m-%d"))
+
     indice_base <- df %>%
-       dplyr::filter(fecha == paste0(base_year, "-", base_month, "-01")) %>%
+       dplyr::filter(fecha == as.Date(end_date, "%Y-%m-%d")) %>%
        dplyr::select(indice) %>%
        as.numeric()
      
@@ -68,15 +50,10 @@ c2c <- function(to = "constant",
     data <- data %>%
       dplyr::mutate(deflactor = indice_base/indice) %>% 
       dplyr::mutate(x_const = as.numeric(.data[[x]])*deflactor) %>% 
-      dplyr::select(-mes, -fecha, - deflactor, -indice)
-  }
-  if(to == "current"){
-    
-  }
-  
+      dplyr::select(-fecha, - deflactor, -indice)
+
   return(data)
-  
-  
+
 }
 
 

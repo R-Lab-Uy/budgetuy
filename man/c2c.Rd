@@ -5,23 +5,16 @@
 \title{c2c}
 \usage{
 c2c(
-  to = "constant",
-  base_month = NULL,
-  base_year = NULL,
+  end_date = NA_character_,
   index = "IPC",
   level = "G",
   data = NULL,
   x = NA_character_,
-  y = NA_character_,
-  m = NA_character_
+  start_date = NA_character_
 )
 }
 \arguments{
-\item{to}{por defecto, 'constant' para convertir a pesos constantes}
-
-\item{base_month}{mes base}
-
-\item{base_year}{anio base}
+\item{end_date}{fecha final para la conversion "yyyy-mm-dd"}
 
 \item{index}{indice a utilizar para convertir (IPC, IPAB)}
 
@@ -29,11 +22,9 @@ c2c(
 
 \item{data}{data frame con los montos a convertir}
 
-\item{x}{variable de data con los montos}
+\item{x}{variable de data con los valores a convertir}
 
-\item{y}{variable de data con el anio}
-
-\item{m}{variable de data con el mes}
+\item{start_date}{variable de data con la fecha correspondiente a los valores "yyyy-mm-dd"}
 }
 \value{
 data.frame

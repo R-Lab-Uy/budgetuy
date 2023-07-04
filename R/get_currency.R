@@ -1,41 +1,33 @@
-#' get_currency_exchange_data
-#'
-#' @author Guzman Lopez
+#' get_currency_exchange
+#' 
+#' @param path path to download files and processed data
+#' @param write FALSE to not save data
 #' @return data.frame
 #' @export
 #' 
 #' @examples
 #' \donttest{
-#' get_currency_exchange_data()
+#' get_currency_exchange()
 #' }
-get_currency_exchange_data <- function() {
+get_currency_exchange <- function(path = tempdir(), write = FALSE) {
   
-  # message("Descargando data del INE...")
-  # # Download data from INE and write to a file
-  # httr::set_config(httr::config(ssl_verifypeer = 0L))
-  # 
-  # url <-
-  #   xml2::read_html(httr::GET("https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/estadisticas/cotizacion-monedas")) %>%
-  #   rvest::html_node(".pull-right > a:nth-child(1)") %>%
-  #   rvest::html_attr("href") %>% 
-  #   gsub("http:", "https:", .)
-  # 
-  # res <- 
-  #   httr::GET(url = url, httr::timeout(60))
-  # 
-  # file <- here::here(tempdir(), "cotizaciones.xlsx")
-  # zz <- file(file, "wb")
-  # writeBin(res$content, zz)
-  # close(zz)
-  
-  #file <- "https://www5.ine.gub.uy/documents/Estad%C3%ADsticasecon%C3%B3micas/SERIES%20Y%20OTROS/Cotizaci%C3%B3n%20de%20monedas/Cotizaci%C3%B3n%20monedas.xlsx"
-  #return(file)
+    assertthat::assert_that(is.character(path), msg = "Sorry... :( \n \t path parameter must be character")
+    assertthat::assert_that(is.logical(write), msg = "Sorry... :( \n \t write parameter must be logical")
+    assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
 
+    u <- budgetuy::urls_ine %>% dplyr::filter(indice == "Cotizaciones") %>% dplyr::select(url) %>% dplyr::pull()
+    f <- fs::path(path, "cotizaciones_raw.xlsx")
+    
+    if (identical(.Platform$OS.type, "unix")) {
+      try(utils::download.file(u, f, mode = 'wb', method = 'wget'))
+    } else {
+      try(utils::download.file(u, f, mode = 'wb', method = 'libcurl'))
+    }
 }
 
 
 #' format_currency_data
-#'
+#' 
 #' @author Guzman Lopez
 #' @param write por defecto no guarda el objeto en un archivo
 #' @param path por defecto, una carpeta temporal
@@ -44,13 +36,13 @@ get_currency_exchange_data <- function() {
 #' @export
 #'
 #' @examples
-#'#' 
+#'#'
 format_currency_data <- function(write = FALSE, path = tempdir()) {
   message("Procesando archivo descargado del INE...")
   data <- suppressWarnings(
     suppressMessages(
       readxl::read_excel(
-        here::here(tempdir(), "cotizaciones.xlsx"),
+        here::here(tempdir(), "cotizaciones_raw.xlsx"),
         col_names = FALSE,
         skip = 8,
         progress = TRUE
@@ -121,4 +113,3 @@ format_currency_data <- function(write = FALSE, path = tempdir()) {
   return(data_ts)
   
 }
-

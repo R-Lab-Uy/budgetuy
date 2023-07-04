@@ -18,7 +18,7 @@ get_budget <- function(year = 2021, level = "national", folder = tempdir(), toR 
   assertthat::assert_that(.x = curl::has_internet(), msg = "No internet access was detected. Please check your connection.")
   stopifnot(is.numeric(year) | is.null(year) | length(year) <= 1)
   if (!is.character(folder) | length(folder) != 1) {
-    message(glue::glue("Sorry... ;( \n \t You must enter a directory..."))
+    message(stringr::str_glue("Sorry... ;( \n \t You must enter a directory..."))
   }
   
   # download ----
@@ -46,10 +46,10 @@ get_budget <- function(year = 2021, level = "national", folder = tempdir(), toR 
   y <- links$yy
   
   if (!file.exists(f1)) {
-    message(glue::glue("Trying to download Credito Presupuestal {y}..."))
+    message(stringr::str_glue("Trying to download Credito Presupuestal {y}..."))
     try(utils::download.file(u1, f1, mode = "wb", method = "libcurl"))
   } else {
-    message(glue::glue("Credito presupuestal {y} already exists, the download is omitted"))
+    message(stringr::str_glue("Credito presupuestal {y} already exists, the download is omitted"))
   }
   
   # read----
@@ -63,28 +63,28 @@ get_budget <- function(year = 2021, level = "national", folder = tempdir(), toR 
                             collapse = ", ")
     formats_string <- paste(c(uncompressed_formats[length(uncompressed_formats)]),
                             collapse = " o ")
-    stop(glue::glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
+    stop(stringr::str_glue("The metadata in {archivo} indicates that this file is not useful. \n \t Make sure the format is {formats_string}."))
   }
   
   if (ext %in% "csv") {
-    message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
+    message(stringr::str_glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
     #d <- readr::read_csv(archivo, show_col_types = FALSE)
     d <- utils::read.csv(archivo)
     d <- d %>%
       dplyr::mutate_if(is.character,stringi::stri_trans_general,"latin-ascii")
   }
   if (ext %in% "xlsx") {
-    message(glue::glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
+    message(stringr::str_glue("The metadata in {archivo} indicates that the uncompressed format is suitable,  \n \t Trying to read..."))
     #d <- readr::read_csv(archivo, show_col_types = FALSE)
     d <- readxl::read_xlsx(archivo)
     
   }
   
   if (any(class(d) %in% "data.frame")) {
-    message(glue::glue("{archivo} could be read as tibble :-)"))
+    message(stringr::str_glue("{archivo} could be read as tibble :-)"))
     #d <- janitor::clean_names(d)
   } else {
-    stop(glue::glue("{archivo} could not be read as tibble :-("))
+    stop(stringr::str_glue("{archivo} could not be read as tibble :-("))
   }
   
   # standarize names
@@ -103,7 +103,7 @@ get_budget <- function(year = 2021, level = "national", folder = tempdir(), toR 
   # save ----
   if (isTRUE(toR)) {
     save(d, file = fs::path(folder, paste0("credito_presupuestal_", year, ".Rdata")))
-    message(glue::glue("The credito presupuestal {year} has been saved in R format"))
+    message(stringr::str_glue("The credito presupuestal {year} has been saved in R format"))
     csv <- fs::dir_ls(folder, regexp = "\\.csv$")
     fs::file_delete(archivo)
     fs::file_delete(csv)

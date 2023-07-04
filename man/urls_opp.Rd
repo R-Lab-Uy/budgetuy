@@ -31,7 +31,9 @@ Other dataset:
 \code{\link{cotizaciones}},
 \code{\link{divisas}},
 \code{\link{ipc_base2010}},
-\code{\link{presupuesto_2021}}
+\code{\link{ipc_base2022}},
+\code{\link{presupuesto_2021}},
+\code{\link{urls_ine}}
 }
 \concept{dataset}
 \keyword{datasets}
