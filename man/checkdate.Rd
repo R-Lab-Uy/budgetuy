@@ -4,10 +4,12 @@
 \alias{checkdate}
 \title{checkdate}
 \usage{
-checkdate(date = NA_character_)
+checkdate(date = NA_character_, data = NULL)
 }
 \arguments{
-\item{date}{character date 'yyyy-mm-dd'}
+\item{date}{character date 'yyyy-mm-dd' or variable name}
+
+\item{data}{data.frame}
 }
 \value{
 TRUE if date is valid date

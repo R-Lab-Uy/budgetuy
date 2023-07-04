@@ -129,5 +129,6 @@ summary_budget <- function (data = budgetuy::presupuesto_2021, level = "org") {
   data_sum <- data %>%  
     dplyr::group_by(organismo_nombre, anio) %>% 
     dplyr::summarise_at(dplyr::vars(apertura, credito, ejecutado), sum, na.rm = FALSE) %>% 
-    dplyr::mutate("% ejecutado" = budgetuy::round_off(ejecutado/credito*100, 1))
+    dplyr::mutate("% ejecutado" = budgetuy::round_off(ejecutado/credito*100, 1)) %>% 
+    dplyr::ungroup()
 }

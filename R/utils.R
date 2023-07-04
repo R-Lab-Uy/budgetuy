@@ -85,21 +85,33 @@ values_format <- function (data = NULL, x = NA_character_, to = "thousand") {
 
 #' checkdate
 #'
-#' @param date character date 'yyyy-mm-dd'
-#'
+#' @param date character date 'yyyy-mm-dd' or variable name
+#' @param data data.frame 
 #' @return TRUE if date is valid date
 #' @export
 #'
 #' @examples
 #'#' 
-checkdate <- function(date = NA_character_) {
-  x <- as.Date(date, "%Y-%m-%d")
-  if(!is.na(x)){
-    tryCatch(lubridate::is.Date(x), 
-             error = function(e) return(FALSE))  
+checkdate <- function(date = NA_character_, data = NULL) {
+  
+  if(is.null(data)){
+    x <- as.Date(date, "%Y-%m-%d")
+    if(!is.na(x)){
+      tryCatch(lubridate::is.Date(x), 
+               error = function(e) return(FALSE))  
+    } else{
+      return(FALSE)
+    }  
   } else{
-    return(FALSE)
+    data <- data %>% dplyr::mutate(x = as.Date(.data[[date]]))
+    if(sum(is.na(data$x)) < nrow(data)){
+      tryCatch(lubridate::is.Date(data$x), 
+               error = function(e) return(FALSE))  
+    } else{
+      return(FALSE)
+    }  
   }
+  
   
 }
 

@@ -31,7 +31,7 @@ c2c <- function(end_date = NA_character_,
   
    data <- data %>% 
       dplyr::mutate(
-          fecha = as.Date(start_date, "%Y-%m-%d"))
+          fecha = as.Date(.data[[start_date]], "%Y-%m-%d"))
 
     indice_base <- df %>%
        dplyr::filter(fecha == as.Date(end_date, "%Y-%m-%d")) %>%
