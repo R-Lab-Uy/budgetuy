@@ -22,14 +22,15 @@ c2c <- function(end_date = NA_character_,
   
   assertthat::assert_that(checkdate(end_date), msg = "Sorry... :( \n \t end_date parameter is not a validate date")
   assertthat::assert_that(is.character(x), msg = "Sorry... :( \n \t x parameter must be character")
-  assertthat::assert_that(is.character(start_date), msg = "Sorry... :( \n \t start_date parameter must be character")
+  #assertthat::assert_that(is.character(start_date), msg = "Sorry... :( \n \t start_date parameter must be character")
   assertthat::assert_that(is.data.frame(data), msg = "Sorry... :( \n \t data parameter must be data frame")
+  #assertthat::assert_that(lubridate::is.Date(data[[start_date]]), msg = "Sorry... :( \n \t start_date variable must be Date")
   
   if(index == "IPC" & level == "G"){
     df <- budgetuy::ipc_base2022
   }
   
-   data <- data %>% 
+   data <- data %>%
       dplyr::mutate(
           fecha = as.Date(.data[[start_date]], "%Y-%m-%d"))
 
