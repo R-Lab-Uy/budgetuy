@@ -24,7 +24,7 @@ currency_converter <- function(data = NULL,
   assertthat::assert_that(checkdate(end_date), msg = "Sorry... :( \n \t end_date parameter is not a validate date")
   assertthat::assert_that(is.data.frame(data), msg = "Sorry... :( \n \t data parameter must be data frame")
   assertthat::assert_that(is.character(x), msg = "Sorry... :( \n \t x parameter must be character")
-  assertthat::assert_that(money_from==money_to, msg = "Sorry... :( \n \t money_from and money_to parameter must be different currency")
+  assertthat::assert_that(money_from!=money_to, msg = "Sorry... :( \n \t money_from and money_to parameter must be different currency")
  # assertthat::assert_that(money_from!="UYU"&money_to!="UYU", msg = "Sorry... :( \n \t this package only convert from UYU or to UYU")
   
   df <- budgetuy::cotizaciones %>% 

@@ -34,8 +34,11 @@ c2c <- function(end_date = NA_character_,
       dplyr::mutate(
           fecha = as.Date(.data[[start_date]], "%Y-%m-%d"))
 
+   end_date <- as.Date(end_date, "%Y-%m-%d")
+   end_date <- as.Date(paste(lubridate::year(end_date), lubridate::month(end_date), "01", sep = "-"), "%Y-%m-%d")
+   
     indice_base <- df %>%
-       dplyr::filter(fecha == as.Date(end_date, "%Y-%m-%d")) %>%
+       dplyr::filter(fecha == end_date) %>%
        dplyr::select(indice) %>%
        as.numeric()
      
