@@ -1,17 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# budgetuy
+# budgetuy <img align="right" src="man/figures/logo.png" alt="logo" width="160">
 
 <!-- badges: start -->
 <!-- badges: end -->
 
 El objetivo de este paquete es facilitar el trabajo con el presupuesto
 de Uruguay. Permite descargar datos abiertos de presupuesto de los
-organismos del Estado desde … hasta el último dato disponible. También
+organismos del Estado desde 2011 hasta 2023. Estos datos se descargarán
+desde la web de la Oficina de Planeamiento y Presupesto. También
 encontrarás funciones para convertir de valores corrientes a constantes
-y convertir entre monedas. Esto último puede serte útil incluso si no
-trabajás con los datos del presupuesto.
+-*c2c()*- y convertir entre monedas -*currency_converter()*-. Esto
+último puede serte útil incluso si no trabajás con los datos del
+presupuesto.
 
 ## Instalación
 
@@ -26,6 +28,8 @@ devtools::install_github("R-Lab-Uy/budgetuy")
 ## Conjuntos de datos
 
 **Divisas**
+
+🇺🇾 🇦🇷 🇧🇷 🇪🇺 🇺🇸
 
 | codigo | moneda               |
 |:-------|:---------------------|
@@ -87,10 +91,10 @@ p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_cons
 ## ¿Quiénes somos?
 
 [RLabUy](https://rlabuy.rbind.io/) somos Richard Detomasi y Gabriela
-Mathieu. Junto con budgetuy hemos desarrollado otros paquetes en R que
+Mathieu. Además de *budgetuy* hemos desarrollado otros paquetes en R que
 se complementan y conforman **uyverse**.
 
-En budgetuy colaboró Guzmán López con funciones para estandarizar las
+En *budgetuy* colaboró Guzmán López con funciones para estandarizar las
 cotizaciones de monedas descargadas desde la web del INE.
 
 Además de desarrollar paquetes de R, damos cursos de R para que más
@@ -103,6 +107,7 @@ Todo lo que hacemos es en pos de contribuir a la comunidad de usuarixs
 de R en Uruguay. La parte más difícil es mantener estos paquetes
 actualizados porque lleva tiempo. Pero todo el esfuerzo vale la pena si
 más personas usan el paquete. Podés colaborar usándolo y detectando
-errores o posibles mejoras. Podés hacernos llegar tus comentarios por
-[mail](mailto:rlabuy@protonmail.com) o enviando issues. Si conocés a
-alguien que podría serle útil este paquete comentáselo.
+errores o sugiriendonos posibles mejoras. Podés hacernos llegar tus
+comentarios por [mail](mailto:rlabuy@protonmail.com) o enviando
+*issues*. Si conocés a alguien que podría serle útil este paquete
+comentáselo.
