@@ -76,7 +76,7 @@ p21_org <- summary_budget(data = p21, level = "org")
 p21_org_const <- c2c(end_date = "2019-01-01", data = p21_org, x = "ejecutado", start_date = "anio")
 
 # para expresar los valores en miles de pesos
-p21_org_const <- format_values(data = p21_org_const, x = ejecutado, to = "thousand") 
+p21_org_const <- values_format(data = p21_org_const, x = ejecutado, to = "thousand") 
 
 # o podemos expresar los valores en dólares
 p21_org_const_usd <- currency_converter(data = p21_org_const, x = ejecutado_const, end_date = "2019-01-01")

@@ -13,12 +13,13 @@
 #'
 #'@examples
 #'#'
-c2c <- function(end_date = NA_character_,
-                index = "IPC",
-                level = "G", 
-                data = NULL,
+c2c <- function(data = NULL,
                 x = NA_character_,
-                start_date = NA_character_) {
+                start_date = NA_character_,
+                end_date = NA_character_,
+                index = "IPC",
+                level = "G"
+                ) {
   
   assertthat::assert_that(checkdate(end_date), msg = "Sorry... :( \n \t end_date parameter is not a validate date")
   assertthat::assert_that(is.character(x), msg = "Sorry... :( \n \t x parameter must be character")
